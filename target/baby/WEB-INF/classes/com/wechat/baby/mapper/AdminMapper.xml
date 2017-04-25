@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wechat.baby.mapper.AdminMapper">
+	<resultMap id="Admin" type="admin">
+		<id property="id" column="id" />
+		<result property="realName" column="real_name" />
+		<result property="isEnabled" column="is_enabled" />
+		<result property="isLocked" column="is_locked" />
+		<result property="loginFailureCount" column="login_failure_count" />
+		<result property="loginIp" column="login_ip" />
+		<result property="lockedDate" column="locked_date" javaType="java.util.Date" />
+		<result property="createDate" column="create_date" javaType="java.util.Date" />
+		<result property="modifyDate" column="modify_date" javaType="java.util.Date" />
+	</resultMap>
+
+	<sql id="forUpdate">
+	    for update
+	</sql>
+	
+	<select id="getAdminByUsername" parameterType="hashmap" resultMap="Admin">
+	    select * from baby_admin where username = #{username}
+		<if test="isUpdate == true">
+			<include refid="forUpdate" />
+		</if>
+	</select>
+	
+	<select id="getAdminById" parameterType="hashmap" resultMap="Admin">
+	    select * from baby_admin where id = #{id}
+		<if test="isUpdate == true">
+			<include refid="forUpdate" />
+		</if>
+	</select>
+	
+	<select id="getAdmin" resultMap="Admin">
+	    select * from baby_admin
+	</select>
+	
+	<update id="updateAdminLocked" parameterType="admin">
+	    update baby_admin set is_locked = #{isLocked}, login_failure_count = #{loginFailureCount,jdbcType=INTEGER},
+	           locked_date = #{lockedDate,jdbcType=TIMESTAMP}, modify_date = now()
+	     where id = #{id}
+	</update>
+</mapper>
