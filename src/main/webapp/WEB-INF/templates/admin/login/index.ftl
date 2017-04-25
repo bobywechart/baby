@@ -9,7 +9,7 @@
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
-    <title>Wechat Admin</title>
+    <title>Wechat Admin1</title>
     <link href="${base}/img/favicon.png" rel="shortcut icon" type="image/png" /> 
     <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${base}/css/font-awesome.min.css" rel="stylesheet">
