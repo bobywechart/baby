@@ -7,7 +7,7 @@
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<!--[if lt IE 9]>
-		<meta http-equiv="refresh" content="0;ie.html" />
+			<meta http-equiv="refresh" content="0;ie.html" />
 		<![endif]-->
 		<title>Wechat Admin</title>
 		<link href="${base}/img/favicon.png" rel="shortcut icon" type="image/png" /> 
