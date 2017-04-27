@@ -76,7 +76,7 @@
 	</script>
 </head>
 
-<body class="signin" style="overflow: hidden;">
+<body class="signin">
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-7">
