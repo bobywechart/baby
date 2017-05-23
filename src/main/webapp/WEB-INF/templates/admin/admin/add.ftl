@@ -16,6 +16,7 @@
 		<link href="${base}/css/font-awesome.min.css" rel="stylesheet">
 		<link href="${base}/css/animate.css" rel="stylesheet">
 		<link href="${base}/css/style.css" rel="stylesheet">
+		<link href="${base}/css/iCheck/custom.css" rel="stylesheet">
 		<script type="text/javascript" src="${base}/js/jquery.js"></script>
 	</head>
 
@@ -23,79 +24,226 @@
 		<div class="wrapper wrapper-content animated fadeInRight">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>管理员信息</h5>               
+					<h5>增加管理员</h5>               
 				</div>
 				<div class="ibox-content">
-					<div class="row row-lg">
-						<div class="col-sm-12">
-							<div class="example-wrap">
-								<div class="example">
-									<div id="toolbar" class="fixed-table-toolbar" role="group">
-										<button type="button" class="btn btn-outline btn-default">
-											<a href="add.html"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
-										</button>
-										<button type="button" class="btn btn-outline btn-default">
-											<a href="add.html"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
-										</button>
-									</div>
-									<table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" data-url="list.html" data-height="246" >
-										<thead>
-											<tr>
-												<th data-field="state" data-checkbox="true"></th>
-												<th>用户名</th>
-												<th>邮箱</th>
-												<th>最后登录时间</th>
-												<th>最后登录IP</th>
-												<th>是否启用</th>
-												<th>是否锁定</th>
-												<th>创建时间</th>
-												<th>操作</th>
-											</tr>
-										</thead>
-										<tbody>
-											<#list page.getList() as admin>
-											<tr>
-												<td data-field="state" data-checkbox="true"></td>
-												<td>${admin.username}</td>
-												<td>${admin.email}</td>
-												<td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-												<td>${admin.loginIp}</td>
-												<td>
-													<#if admin.isEnabled>
-													<i class="fa fa-check text-navy"></i>
-													<#else>
-													<i class="fa fa-times text-warning"></i>
-													</#if>
-												</td>
-												<td>
-													<#if admin.isLocked>
-													<i class="fa fa-check text-navy"></i>
-													<#else>
-													<i class="fa fa-times text-warning"></i>
-													</#if>
-												</td>
-												<td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-												<td>
-													<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
-													<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
-												</td>
-											</tr>
-											</#list>
-										</tbody>
-									</table>
+					<form method="get" class="form-horizontal" id="signupForm">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">用户ID：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="userid" name="userid" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label">用户名：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="username" name="username" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">密码：</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" name="password" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">E-mail：</label>
+							<div class="col-sm-6">
+								<input type="email" class="form-control" id="email" name="email" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="fullname">姓名：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="fullname" name="fullname" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">联系方式：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="tel" name="tel" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">公司：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="company" name="company" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">部门：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="department" name="department" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">是否启用：</label>
+							<div class="col-sm-6">
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="option1" name="enable">
+										 <i class="fa fa-check text-navy"></i>
+									</label>
+								</div>
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" checked="" value="option2" name="enable">
+										<i class="fa fa-times text-warning"></i>
+									</label>
 								</div>
 							</div>
 						</div>
-					</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">是否锁定：</label>
+							<div class="col-sm-6">
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="option1" name="locked">
+										 <i class="fa fa-check text-navy"></i>
+									</label>
+								</div>
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" checked="" value="option2" name="locked">
+										<i class="fa fa-times text-warning"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">连续登录失败次数：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="num" name="num" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">锁定日期：</label>
+							<div class="col-sm-6">
+								<input readonly id="date1" name="date1" class="laydate-icon form-control layer-date" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">最后登录IP：</label>
+							<div class="col-sm-6">
+								<input type="text" id="userip" name="userip" class="form-control" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">角色：</label>
+							<div class="col-sm-6">
+								<select class="form-control m-b" name="account">
+									<option>管理员</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">注册日期：</label>
+							<div class="col-sm-6">
+								<input readonly id="date2" name="date2" class="laydate-icon form-control layer-date" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">修改日期：</label>
+							<div class="col-sm-6">
+								<input readonly id="date3" name="date3" class="laydate-icon form-control layer-date" required="">
+							</div>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<div class="col-sm-4 col-sm-offset-2">
+								<button class="btn btn-primary" type="submit">保存内容</button>
+								<button class="btn btn-white" type="submit">取消</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
-		<script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
-		<script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
-		<script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-		<script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
+
+		<script src="${base}/js/bootstrap.min.js"></script>
+		<!-- <script src="${base}/js/plugins/bootstrap-table.js"></script>
+		<script src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
+		<script src="${base}/js/plugins/jquery.metisMenu.js"></script>
+		<script src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
+		<script src="${base}/js/plugins/layer.js"></script> -->
+		<script src="${base}/js/plugins/iCheck/icheck.min.js"></script>
+		<script src="${base}/js/plugins/laydate/laydate.js"></script>
+		<script src="${base}/js/plugins/validate/jquery.validate.min.js"></script>
+		<script src="${base}/js/plugins/validate/messages_zh.min.js"></script>
+		<script src="${base}/js/plugins/form-validate-demo.js"></script>
+		<script>
+			//单选框
+			$(document).ready(function () {
+				$('.i-checks').iCheck({
+					checkboxClass: 'icheckbox_square-green',
+					radioClass: 'iradio_square-green',
+				});
+			});
+
+			//日期控件
+			laydate({
+				elem: '#date1',
+				istime: true,
+  				format: 'YYYY/MM/DD hh:mm:ss'
+			});
+			laydate({
+				elem: '#date2',
+				istime: true,
+  				format: 'YYYY/MM/DD hh:mm:ss'
+			});
+			laydate({
+				elem: '#date3',
+				istime: true,
+  				format: 'YYYY/MM/DD hh:mm:ss'
+			});
+		</script>
 	</body>
 
 	</html>

@@ -1,0 +1,17 @@
+2017-05-23 11:27:47.967 [http-nio-8080-exec-10] WARN  o.a.tomcat.jdbc.pool.ConnectionPool -maxIdle is larger than maxActive, setting maxIdle to: 50
+2017-05-23 11:35:27.322 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase -The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2017-05-23 11:38:08.813 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase -The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2017-05-23 11:42:04.300 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase -The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2017-05-23 11:59:09.478 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase -The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2017-05-23 11:59:28.982 [http-nio-8080-exec-3] WARN  o.a.tomcat.jdbc.pool.ConnectionPool -maxIdle is larger than maxActive, setting maxIdle to: 50
+2017-05-23 18:08:00.996 [localhost-startStop-1] WARN  o.a.c.loader.WebappClassLoaderBase -The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2017-05-23 18:16:02.436 [http-nio-8080-exec-3] WARN  o.a.tomcat.jdbc.pool.ConnectionPool -maxIdle is larger than maxActive, setting maxIdle to: 50

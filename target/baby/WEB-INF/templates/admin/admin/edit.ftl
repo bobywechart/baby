@@ -1,167 +1,101 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>${message("admin.admin.edit")} - Powered By SHOP++</title>
-<meta name="author" content="SHOP++ Team" />
-<meta name="copyright" content="SHOP++" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.tools.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
-<style type="text/css">
-.roles label {
-	width: 150px;
-	display: block;
-	float: left;
-	padding-right: 5px;
-}
-</style>
-<script type="text/javascript">
-$().ready(function() {
-
-	var $inputForm = $("#inputForm");
-	
-	[@flash_message /]
-	
-	// 表单验证
-	$inputForm.validate({
-		rules: {
-			password: {
-				pattern: /^[^\s&\"<>]+$/,
-				minlength: 4,
-				maxlength: 20
-			},
-			rePassword: {
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			roleIds: "required"
-		},
-		messages: {
-			password: {
-				pattern: "${message("admin.validate.illegal")}"
-			}
-		}
-	});
-
-});
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <title>Wechat Admin</title>
+    <link href="${base}/img/favicon.png" rel="shortcut icon" type="image/png" /> 
+    <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
+    <link href="${base}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${base}/css/animate.css" rel="stylesheet">
+    <link href="${base}/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="${base}/js/jquery.js"></script>
 </head>
-<body>
-	<div class="breadcrumb">
-		<a href="${base}/admin/common/index.jhtml">${message("admin.breadcrumb.home")}</a> &raquo; ${message("admin.admin.edit")}
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="ibox float-e-margins">
+		  	<div class="ibox-title">
+	            <h5>管理员信息</h5>               
+	        </div>
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+	                    <div class="example-wrap">
+	                        <div class="example">
+	                            <div id="toolbar" class="fixed-table-toolbar" role="group">
+	                                <button type="button" class="btn btn-outline btn-default">
+	                                    <a href="add.html"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
+	                                </button>
+	                                <button type="button" class="btn btn-outline btn-default">
+	                                    <a href="add.html"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
+	                                </button>
+	                            </div>
+	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
+							    	<thead>
+									    <tr>
+									      <th data-field="state" data-checkbox="true"></th>
+									      <th>用户名</th>
+									      <th>邮箱</th>
+									      <th>最后登录时间</th>
+									      <th>最后登录IP</th>
+									      <th>是否启用</th>
+									      <th>是否锁定</th>
+									      <th>创建时间</th>
+									      <th>操作</th>
+									    </tr>
+								    </thead>
+								    <tbody>
+								    <#list page.getList() as admin>
+									    <tr>
+									      <td data-field="state" data-checkbox="true"></td>
+									      <td>${admin.username}</td>
+									      <td>${admin.email}</td>
+									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+									      <td>${admin.loginIp}</td>
+									      <td>
+									      	<#if admin.isEnabled>
+									      		<i class="fa fa-check text-navy"></i>
+									      	<#else>
+									      		<i class="fa fa-times text-warning"></i>
+									      	</#if>
+									      </td>
+									      <td>
+									      	<#if admin.isLocked>
+									      		<i class="fa fa-check text-navy"></i>
+									      	<#else>
+									      		<i class="fa fa-times text-warning"></i>
+									      	</#if>
+									      </td>
+									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+									      <td>
+									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
+									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
+									      </td>
+									    </tr>
+									 </#list>
+								    </tbody>
+								</table>
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<form id="inputForm" action="update.jhtml" method="post">
-		<input type="hidden" name="id" value="${admin.id}" />
-		<ul id="tab" class="tab">
-			<li>
-				<input type="button" value="${message("admin.admin.base")}" />
-			</li>
-			<li>
-				<input type="button" value="${message("admin.admin.profile")}" />
-			</li>
-		</ul>
-		<table class="input tabContent">
-			<tr>
-				<th>
-					${message("Admin.username")}:
-				</th>
-				<td>
-					${admin.username}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Admin.password")}:
-				</th>
-				<td>
-					<input type="password" id="password" name="password" class="text" maxlength="20" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("admin.admin.rePassword")}:
-				</th>
-				<td>
-					<input type="password" name="rePassword" class="text" maxlength="20" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<span class="requiredField">*</span>${message("Admin.email")}:
-				</th>
-				<td>
-					<input type="text" name="email" class="text" value="${admin.email}" maxlength="200" />
-				</td>
-			</tr>
-			<tr class="roles">
-				<th>
-					<span class="requiredField">*</span>${message("Admin.roles")}:
-				</th>
-				<td>
-					<span class="fieldSet">
-						[#list roles as role]
-							<label>
-								<input type="checkbox" name="roleIds" value="${role.id}"[#if admin.roles?seq_contains(role)] checked="checked"[/#if] />${role.name}
-							</label>
-						[/#list]
-					</span>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("admin.common.setting")}:
-				</th>
-				<td>
-					<label>
-						<input type="checkbox" name="isEnabled" value="true"[#if admin.isEnabled] checked="checked"[/#if] />${message("Admin.isEnabled")}
-						<input type="hidden" name="_isEnabled" value="false" />
-					</label>
-					[#if admin.isLocked]
-						<label>
-							<input type="checkbox" name="isLocked" value="true" checked="checked" />${message("Admin.isLocked")}
-							<input type="hidden" name="_isLocked" value="false" />
-						</label>
-					[/#if]
-				</td>
-			</tr>
-		</table>
-		<table class="input tabContent">
-			<tr>
-				<th>
-					${message("Admin.department")}:
-				</th>
-				<td>
-					<input type="text" name="department" class="text" value="${admin.department}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Admin.name")}:
-				</th>
-				<td>
-					<input type="text" name="name" class="text" value="${admin.name}" maxlength="200" />
-				</td>
-			</tr>
-		</table>
-		<table class="input">
-			<tr>
-				<th>
-					&nbsp;
-				</th>
-				<td>
-					<input type="submit" class="button" value="${message("admin.common.submit")}" />
-					<input type="button" id="backButton" class="button" value="${message("admin.common.back")}" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
 </body>
+
 </html>
