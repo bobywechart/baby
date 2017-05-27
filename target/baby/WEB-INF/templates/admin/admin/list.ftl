@@ -30,15 +30,15 @@
 					<div class="col-sm-12">
 	                    <div class="example-wrap">
 	                        <div class="example">
-	                            <div class="fixed-table-toolbar" role="group">
+	                            <div id="toolbar" class="fixed-table-toolbar" role="group">
 	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+	                                    <a href="add.html"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
 	                                </button>
 	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+	                                    <a href="add.html"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
 	                                </button>
 	                            </div>
-	                            <table data-toggle="table" data-side-pagination="client" data-pagination="true" data-pagination-loop="true" data-page-number="1" data-page-size="3" data-pagination-pre-text="<">
+	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
 							    	<thead>
 									    <tr>
 									      <th data-field="state" data-checkbox="true"></th>
@@ -53,12 +53,12 @@
 									    </tr>
 								    </thead>
 								    <tbody>
-								    <#list list as admin>
+								    <#list page.getList() as admin>
 									    <tr>
 									      <td data-field="state" data-checkbox="true"></td>
 									      <td>${admin.username}</td>
 									      <td>${admin.email}</td>
-									      <td>${admin.modifyDate}</td>
+									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
 									      <td>${admin.loginIp}</td>
 									      <td>
 									      	<#if admin.isEnabled>
@@ -74,8 +74,11 @@
 									      		<i class="fa fa-times text-warning"></i>
 									      	</#if>
 									      </td>
-									      <td>${admin.createDate}</td>
-									      <td><a class="btn btn-outline btn-primary btn-sm" href="#" role="button">编辑</a></td>
+									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+									      <td>
+									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
+									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
+									      </td>
 									    </tr>
 									 </#list>
 								    </tbody>
