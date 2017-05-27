@@ -152,7 +152,6 @@
 				</div>
 			</div>
 		</div>
-
 		<script src="${base}/js/bootstrap.min.js"></script>
 		<script src="${base}/js/plugins/iCheck/icheck.min.js"></script>
 		<script src="${base}/js/plugins/laydate/laydate.js"></script>
