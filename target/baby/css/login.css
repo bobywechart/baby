@@ -3,6 +3,7 @@ body.signin {
    font-family: 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif !important;
    line-height: 21px;
    color: rgba(255,255,255,.95);
+   overflow:hidden;
 }
 
 .signinpanel {
