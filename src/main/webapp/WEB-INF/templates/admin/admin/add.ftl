@@ -29,15 +29,6 @@
 				<div class="ibox-content">
 					<form method="get" class="form-horizontal" id="signupForm">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">用户ID：</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="userid" name="userid" required="">
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-						
-						<div class="form-group">
 							<label class="col-sm-3 control-label">用户名：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="username" name="username" required="">
@@ -141,56 +132,11 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">连续登录失败次数：</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="num" name="num" required="">
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">锁定日期：</label>
-							<div class="col-sm-6">
-								<input readonly id="date1" name="date1" class="laydate-icon form-control layer-date" required="">
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">最后登录IP：</label>
-							<div class="col-sm-6">
-								<input type="text" id="userip" name="userip" class="form-control" required="">
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
 							<label class="col-sm-3 control-label">角色：</label>
 							<div class="col-sm-6">
 								<select class="form-control m-b" name="account">
 									<option>管理员</option>
 								</select>
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">注册日期：</label>
-							<div class="col-sm-6">
-								<input readonly id="date2" name="date2" class="laydate-icon form-control layer-date" required="">
-							</div>
-						</div>
-
-						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">修改日期：</label>
-							<div class="col-sm-6">
-								<input readonly id="date3" name="date3" class="laydate-icon form-control layer-date" required="">
 							</div>
 						</div>
 
@@ -206,13 +152,7 @@
 				</div>
 			</div>
 		</div>
-
 		<script src="${base}/js/bootstrap.min.js"></script>
-		<!-- <script src="${base}/js/plugins/bootstrap-table.js"></script>
-		<script src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
-		<script src="${base}/js/plugins/jquery.metisMenu.js"></script>
-		<script src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-		<script src="${base}/js/plugins/layer.js"></script> -->
 		<script src="${base}/js/plugins/iCheck/icheck.min.js"></script>
 		<script src="${base}/js/plugins/laydate/laydate.js"></script>
 		<script src="${base}/js/plugins/validate/jquery.validate.min.js"></script>
@@ -225,23 +165,6 @@
 					checkboxClass: 'icheckbox_square-green',
 					radioClass: 'iradio_square-green',
 				});
-			});
-
-			//日期控件
-			laydate({
-				elem: '#date1',
-				istime: true,
-  				format: 'YYYY/MM/DD hh:mm:ss'
-			});
-			laydate({
-				elem: '#date2',
-				istime: true,
-  				format: 'YYYY/MM/DD hh:mm:ss'
-			});
-			laydate({
-				elem: '#date3',
-				istime: true,
-  				format: 'YYYY/MM/DD hh:mm:ss'
 			});
 		</script>
 	</body>
