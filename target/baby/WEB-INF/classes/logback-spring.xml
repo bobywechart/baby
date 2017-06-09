@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <include resource="org/springframework/boot/logging/logback/base.xml" />
     <contextName>babyWechat</contextName>
-    <property name="LOG_HOME" value="${catalina.base}/logs/wechat" />  
+    <property name="LOG_HOME" value="${LOG_PATH}/wechat" />  
     <!-- 输出到控制台 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
