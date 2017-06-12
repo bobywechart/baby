@@ -225,7 +225,8 @@ body.body-small .navbar-top-links li:last-child {
 	display: inline-table;
 }
 
-.navbar-form-custom .form-group {
+.navbar-form-custom .form-group,
+#signupForm .form-group{
 	margin-bottom: 0;
 }
 
@@ -3189,7 +3190,7 @@ a:hover, a:focus {
 	color: #ffffff;
 	background-color: #ffffff;
 	height: 1px;
-	margin: 20px 0;
+	margin: 10px 0;
 }
 
 .hr-line-solid {
