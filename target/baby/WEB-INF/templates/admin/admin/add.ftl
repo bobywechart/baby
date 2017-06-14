@@ -27,18 +27,16 @@
 					<h5>增加管理员</h5>               
 				</div>
 				<div class="ibox-content">
-					<form method="get" class="form-horizontal" id="signupForm">
+					<form method="post" class="form-horizontal" id="signupForm">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">用户名：</label>
+							<label class="col-sm-1 control-label">用户名：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="username" name="username" required="">
 							</div>
 						</div>
-
 						<div class="hr-line-dashed"></div>
-
 						<div class="form-group">
-							<label class="col-sm-3 control-label">密码：</label>
+							<label class="col-sm-1 control-label">密码：</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" name="password" required="">
 							</div>
@@ -47,7 +45,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">E-mail：</label>
+							<label class="col-sm-1 control-label">E-mail：</label>
 							<div class="col-sm-6">
 								<input type="email" class="form-control" id="email" name="email" required="">
 							</div>
@@ -56,7 +54,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="fullname">姓名：</label>
+							<label class="col-sm-1 control-label" for="fullname">姓名：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="fullname" name="fullname" required="">
 							</div>
@@ -65,7 +63,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">联系方式：</label>
+							<label class="col-sm-1 control-label">联系方式：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="tel" name="tel" required="">
 							</div>
@@ -74,7 +72,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">公司：</label>
+							<label class="col-sm-1 control-label">公司：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="company" name="company" required="">
 							</div>
@@ -83,7 +81,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">部门：</label>
+							<label class="col-sm-1 control-label">部门：</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="department" name="department" required="">
 							</div>
@@ -92,7 +90,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">是否启用：</label>
+							<label class="col-sm-1 control-label">是否启用：</label>
 							<div class="col-sm-6">
 								<div class="radio-inline i-checks">
 									<label>
@@ -112,7 +110,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">是否锁定：</label>
+							<label class="col-sm-1 control-label">是否锁定：</label>
 							<div class="col-sm-6">
 								<div class="radio-inline i-checks">
 									<label>
@@ -132,7 +130,7 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">角色：</label>
+							<label class="col-sm-1 control-label">角色：</label>
 							<div class="col-sm-6">
 								<select class="form-control m-b" name="account">
 									<option>管理员</option>

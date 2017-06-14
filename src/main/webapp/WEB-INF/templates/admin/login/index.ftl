@@ -52,6 +52,9 @@
                             <li>
                                 <a class="J_menuItem" href="/admin/admin/list.html" data-index="0">管理员信息</a>
                             </li>
+                            <li>
+                                <a class="J_menuItem" href="/admin/role/list.html" data-index="0">角色信息</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

@@ -23,7 +23,7 @@
 	<div class="wrapper wrapper-content animated fadeInRight">
 		<div class="ibox float-e-margins">
 		  	<div class="ibox-title">
-	            <h5>管理员信息</h5>               
+	            <h5>角色信息</h5>               
 	        </div>
 			<div class="ibox-content">
 				<div class="row row-lg">
@@ -34,7 +34,7 @@
 	                            	<a class="btn btn-outline btn-primary" href="add.html">
 	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 	                                </a>
-	                                <a class="btn btn-outline btn-primary" href="add.html">
+	                                <a class="btn btn-outline btn-primary" href="delete.html">
 	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 	                                </a>
 	                            </div>
@@ -42,42 +42,29 @@
 							    	<thead>
 									    <tr>
 									      <th data-field="state" data-checkbox="true"></th>
-									      <th>用户名</th>
-									      <th>邮箱</th>
-									      <th>最后登录时间</th>
-									      <th>最后登录IP</th>
-									      <th>是否启用</th>
-									      <th>是否锁定</th>
+									      <th>名称</th>
+									      <th>是否内置</th>
+									      <th>角色描述</th>
 									      <th>创建时间</th>
 									      <th>操作</th>
 									    </tr>
 								    </thead>
 								    <tbody>
-								    <#list page.getList() as admin>
+								    <#list page.getList() as role>
 									    <tr>
 									      <td data-field="state" data-checkbox="true"></td>
-									      <td>${admin.username}</td>
-									      <td>${admin.email}</td>
-									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>${admin.loginIp}</td>
+									      <td>${role.name}</td>
 									      <td>
-									      	<#if admin.isEnabled>
+									      	<#if role.isSystem>
 									      		<i class="fa fa-check text-navy"></i>
 									      	<#else>
 									      		<i class="fa fa-times text-warning"></i>
 									      	</#if>
 									      </td>
+									      <td>${role.description}</td>
+									      <td>${role.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
 									      <td>
-									      	<#if admin.isLocked>
-									      		<i class="fa fa-check text-navy"></i>
-									      	<#else>
-									      		<i class="fa fa-times text-warning"></i>
-									      	</#if>
-									      </td>
-									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
+									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${role.id}" role="button">编辑</a>
 									      </td>
 									    </tr>
 									 </#list>
