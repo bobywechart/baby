@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wechat.baby.mapper.RoleMapper">
+	<resultMap id="Role" type="role">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="isSystem" column="is_system" />
+		<result property="description" column="description" />
+		<result property="createDate" column="create_date" javaType="java.util.Date" />
+		<result property="modifyDate" column="modify_date" javaType="java.util.Date" />
+		<collection property="authorities" ofType="java.lang.String">
+			<result property="authority" column="authority" />
+		</collection>
+	</resultMap>
+
+	<sql id="forUpdate">
+	    for update
+	</sql>
+	
+	<select id="getRole" resultMap="Role">
+	    select * from baby_role r, baby_role_authority a 
+	     where r.id = a.role_id
+	  order by r.create_date desc
+	</select>
+	
+	<select id="getRoleById" parameterType="java.lang.Long" resultMap="Role">
+	    select * from baby_role r, baby_role_authority a where r.id = a.role_id and r.id = #{id}
+	</select>
+	
+	<insert id="save" parameterType="role" useGeneratedKeys="true" keyProperty="id">
+		insert into baby_role(name,is_system,description,create_date)
+		values(#{name,jdbcType=VARCHAR},#{isSystem,jdbcType=INTEGER},#{description,jdbcType=VARCHAR},now())
+	</insert>
+	
+	<insert id="saveRoleAuthority" parameterType="java.util.HashMap">
+		insert into baby_role_authority(role_id,authority) values
+		<foreach collection="authorities" item="authorities" index="index" separator=",">  
+			(#{id},#{authorities})
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterType="role">
+		update baby_role set name=#{name,jdbcType=VARCHAR},is_system=#{isSystem,jdbcType=INTEGER},
+		       description=#{description,jdbcType=VARCHAR}
+		 where id=#{id}
+	</update>
+	
+	<delete id="deleteRoleAuthority" parameterType="java.lang.Long">
+		delete from baby_role_authority where role_id = #{id} 
+	</delete>
+	
+	<delete id="deleteById" parameterType="java.lang.Long">
+		delete from baby_role where id=#{id}
+	</delete>
+	
+</mapper>
