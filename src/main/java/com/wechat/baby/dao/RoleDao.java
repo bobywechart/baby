@@ -72,5 +72,15 @@ public interface RoleDao {
 	 * @return boolean
 	 */
 	boolean deleteById(Long id);
+
+	/**
+	 * 根据角色ID查找角色信息
+	 * @author lianghao
+	 * @date 2017年6月15日
+	 * @param roleIds
+	 *          角色ID
+	 * @return List<Role> 
+	 */
+	List<Role> getRoleList(Long... roleIds);
 	
 }

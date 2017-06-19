@@ -59,7 +59,7 @@
 									      <td>${admin.username}</td>
 									      <td>${admin.email}</td>
 									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>${admin.loginIp}</td>
+									      <td>${(admin.loginIp)!""}</td>
 									      <td>
 									      	<#if admin.isEnabled>
 									      		<i class="fa fa-check text-navy"></i>
@@ -77,7 +77,6 @@
 									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
 									      <td>
 									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
 									      </td>
 									    </tr>
 									 </#list>

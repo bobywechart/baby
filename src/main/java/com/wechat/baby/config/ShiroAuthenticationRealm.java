@@ -101,6 +101,7 @@ public class ShiroAuthenticationRealm extends AuthorizingRealm {
 			admin.setLoginIp(ip);
 			admin.setModifyDate(new Date());
 			admin.setLoginFailureCount(0);
+			adminService.updateAdmin(admin);
 			return new SimpleAuthenticationInfo(new Principal(admin.getId(), username), password, getName());
 		}
 		throw new UnknownAccountException();

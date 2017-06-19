@@ -1,101 +1,153 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
-    <![endif]-->
-    <title>Wechat Admin</title>
-    <link href="${base}/img/favicon.png" rel="shortcut icon" type="image/png" /> 
-    <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
-    <link href="${base}/css/font-awesome.min.css" rel="stylesheet">
-    <link href="${base}/css/animate.css" rel="stylesheet">
-    <link href="${base}/css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="${base}/js/jquery.js"></script>
-</head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<!--[if lt IE 9]>
+			<meta http-equiv="refresh" content="0;ie.html" />
+		<![endif]-->
+		<title>Wechat Admin</title>
+		<link href="${base}/img/favicon.png" rel="shortcut icon" type="image/png" /> 
+		<link href="${base}/css/bootstrap.min.css" rel="stylesheet">
+		<link href="${base}/css/bootstrap-table.css" rel="stylesheet">
+		<link href="${base}/css/font-awesome.min.css" rel="stylesheet">
+		<link href="${base}/css/animate.css" rel="stylesheet">
+		<link href="${base}/css/style.css" rel="stylesheet">
+		<link href="${base}/css/iCheck/custom.css" rel="stylesheet">
+		<script type="text/javascript" src="${base}/js/jquery.js"></script>
+	</head>
 
-<body class="gray-bg">
-	<div class="wrapper wrapper-content animated fadeInRight">
-		<div class="ibox float-e-margins">
-		  	<div class="ibox-title">
-	            <h5>管理员信息</h5>               
-	        </div>
-			<div class="ibox-content">
-				<div class="row row-lg">
-					<div class="col-sm-12">
-	                    <div class="example-wrap">
-	                        <div class="example">
-	                            <div id="toolbar" class="fixed-table-toolbar" role="group">
-	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <a href="add.html"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
-	                                </button>
-	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <a href="add.html"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
-	                                </button>
-	                            </div>
-	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
-							    	<thead>
-									    <tr>
-									      <th data-field="state" data-checkbox="true"></th>
-									      <th>用户名</th>
-									      <th>邮箱</th>
-									      <th>最后登录时间</th>
-									      <th>最后登录IP</th>
-									      <th>是否启用</th>
-									      <th>是否锁定</th>
-									      <th>创建时间</th>
-									      <th>操作</th>
-									    </tr>
-								    </thead>
-								    <tbody>
-								    <#list page.getList() as admin>
-									    <tr>
-									      <td data-field="state" data-checkbox="true"></td>
-									      <td>${admin.username}</td>
-									      <td>${admin.email}</td>
-									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>${admin.loginIp}</td>
-									      <td>
-									      	<#if admin.isEnabled>
-									      		<i class="fa fa-check text-navy"></i>
-									      	<#else>
-									      		<i class="fa fa-times text-warning"></i>
-									      	</#if>
-									      </td>
-									      <td>
-									      	<#if admin.isLocked>
-									      		<i class="fa fa-check text-navy"></i>
-									      	<#else>
-									      		<i class="fa fa-times text-warning"></i>
-									      	</#if>
-									      </td>
-									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
-									      </td>
-									    </tr>
-									 </#list>
-								    </tbody>
-								</table>
-	                        </div>
-	                    </div>
-	                </div>
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>编辑管理员信息</h5>               
+				</div>
+				<div class="ibox-content">
+					<form method="post" class="form-horizontal" id="signupForm" action="update.html">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">用户名：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="username"  value="${admin.username}" disabled />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+						
+						<div class="form-group">
+							<label class="col-sm-1 control-label">密码：</label>
+							<div class="col-sm-6">
+								<input id="password" type="password" class="form-control" name="password" required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+						
+						<div class="form-group">
+							<label class="col-sm-1 control-label">确认密码：</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" name="rePassword" equalTo='#password' required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">E-mail：</label>
+							<div class="col-sm-6">
+								<input type="email" class="form-control" name="email" value="${admin.email}" required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">姓名：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="realName" value="${admin.realName}" disabled />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">联系方式：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="mobile" value="${admin.mobile}" required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">公司：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="company" value="${admin.company}" required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">部门：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="department" value="${admin.department}" required />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">是否启用：</label>
+							<div class="col-sm-6">
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="true" name="isEnabled" <#if admin.isEnabled> checked="checked"</#if> />
+										<i class="fa fa-check text-navy"></i>
+									</label>
+								</div>
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="false" name="isEnabled" <#if !admin.isEnabled> checked="checked"</#if> />
+										<i class="fa fa-times text-warning"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">角色：</label>
+							<div class="col-sm-6">
+								<#list roles as role>
+									<label class="checkbox-inline i-checks">
+                            			<input type="checkbox" <#if admin.roles?seq_contains(role)> checked="checked"</#if> value="${role.id}" name="roleIds" required />${role.name}
+                        			</label>
+								</#list>
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<div class="col-sm-4 col-sm-offset-2">
+								<button class="btn btn-primary" type="submit">保存</button>
+								<button class="btn btn-white" type="button" onclick="javascript:history.back(-1);">取消</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-	</div>
-	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
-</body>
+		<script src="${base}/js/bootstrap.min.js"></script>
+		<script src="${base}/js/plugins/iCheck/icheck.min.js"></script>
+		<script src="${base}/js/plugins/laydate/laydate.js"></script>
+		<script src="${base}/js/plugins/validate/jquery.validate.min.js"></script>
+		<script src="${base}/js/plugins/validate/messages_zh.min.js"></script>
+		<script src="${base}/js/plugins/form-validate-demo.js"></script>
+		<script>
+			//单选框
+			$(document).ready(function () {
+				$('.i-checks').iCheck({
+					checkboxClass: 'icheckbox_square-green',
+					radioClass: 'iradio_square-green',
+				});
+			});
+		</script>
+	</body>
 
 </html>

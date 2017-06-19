@@ -31,12 +31,12 @@
 	                    <div class="example-wrap">
 	                        <div class="example">
 	                            <div id="toolbar" class="fixed-table-toolbar" role="group">
-	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <a href="add.html"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
-	                                </button>
-	                                <button type="button" class="btn btn-outline btn-default">
-	                                    <a href="add.html"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a>
-	                                </button>
+	                            	<a class="btn btn-outline btn-primary" href="add.html">
+	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+	                                </a>
+	                                <a class="btn btn-outline btn-primary" href="add.html">
+	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+	                                </a>
 	                            </div>
 	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
 							    	<thead>
@@ -59,7 +59,7 @@
 									      <td>${admin.username}</td>
 									      <td>${admin.email}</td>
 									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td>${admin.loginIp}</td>
+									      <td><#if admin.loginIp??>${admin.loginIp}</#if></td>
 									      <td>
 									      	<#if admin.isEnabled>
 									      		<i class="fa fa-check text-navy"></i>
@@ -77,7 +77,6 @@
 									      <td>${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
 									      <td>
 									      	<a class="btn btn-outline btn-primary btn-xs" href="edit.html?id=${admin.id}" role="button">编辑</a>
-									      	<a class="btn btn-outline btn-primary btn-xs" href="view.html?id=${admin.id}" role="button">查看</a>
 									      </td>
 									    </tr>
 									 </#list>

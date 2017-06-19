@@ -94,4 +94,9 @@ public class ShiroConfiguration {
 	public ShiroAuthenticationFilter getShiroAuthenticationFilter() {
 		return new ShiroAuthenticationFilter();
 	}
+	
+	@Bean
+	public FreeMarkerTags getFreeMarkerTags() {
+		return new FreeMarkerTags();
+	}
 }

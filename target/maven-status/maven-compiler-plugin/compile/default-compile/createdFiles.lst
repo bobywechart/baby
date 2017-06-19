@@ -6,8 +6,11 @@ com\wechat\baby\entity\Pageable.class
 com\wechat\baby\config\ShiroAuthenticationRealm.class
 com\wechat\baby\controller\admin\AdminController.class
 com\wechat\baby\service\impl\AdminServiceImpl.class
+com\wechat\baby\service\RoleService.class
+com\wechat\baby\controller\admin\RoleController.class
 com\wechat\baby\service\RSAService.class
 com\wechat\baby\dao\impl\AdminDaoImpl.class
+com\wechat\baby\dao\impl\RoleDaoImpl.class
 com\wechat\baby\config\ErrorConfiguration.class
 com\wechat\baby\service\AdminService.class
 com\wechat\baby\entity\Role.class
@@ -21,4 +24,6 @@ com\wechat\baby\util\WebUtils.class
 com\wechat\baby\config\ShiroAuthenticationFilter.class
 com\wechat\baby\dao\AdminDao.class
 com\wechat\baby\entity\Principal.class
+com\wechat\baby\dao\RoleDao.class
 com\wechat\baby\controller\baby\ErrorController.class
+com\wechat\baby\service\impl\RoleServiceImpl.class

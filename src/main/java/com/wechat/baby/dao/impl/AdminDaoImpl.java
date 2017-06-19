@@ -19,14 +19,16 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-
+	/** 对应Mapper命名空间*/
+    private static String NAME_SPACE = "com.wechat.baby.mapper.AdminMapper.";
+    
 	public Admin getAdminByUsername(String username, boolean isUpdate) {
 		Admin result = null;
 		if(StringUtils.isNotEmpty(username)){
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("username", username);
 			map.put("isUpdate", isUpdate);
-			result = sqlSession.selectOne("getAdminByUsername", map);
+			result = sqlSession.selectOne(NAME_SPACE + "getAdminByUsername", map);
 		}
 		return result;
 	}
@@ -37,7 +39,7 @@ public class AdminDaoImpl implements AdminDao {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("id", id);
 			map.put("isUpdate", isUpdate);
-			result = sqlSession.selectOne("getAdminById", map);
+			result = sqlSession.selectOne(NAME_SPACE + "getAdminById", map);
 		}
 		return result;
 	}
@@ -45,7 +47,7 @@ public class AdminDaoImpl implements AdminDao {
 	public List<String> listAuth(Long id) {
 		List<String> result = null;
 		if(id > 0){
-			result = sqlSession.selectList("listAuth", id);
+			result = sqlSession.selectList(NAME_SPACE + "listAuth", id);
 		}
 		return result;
 	}
@@ -64,13 +66,28 @@ public class AdminDaoImpl implements AdminDao {
 	public boolean updateAdminLocked(Admin admin) {
 		boolean result = false;
 		if(admin != null){
-			result = (sqlSession.update("updateAdminLocked", admin) == 1);
+			result = (sqlSession.update(NAME_SPACE + "updateAdminLocked", admin) == 1);
 		}
 		return result;
 	}
 
 	public List<Admin> getAdmin() {
-		return sqlSession.selectList("getAdmin");
+		return sqlSession.selectList(NAME_SPACE + "getAdmin");
+	}
+
+	public boolean save(Admin admin) {
+		return sqlSession.insert(NAME_SPACE + "saveAdmin", admin) == 1;
+	}
+
+	public boolean saveRole(Admin admin) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", admin.getId());
+		map.put("roles", admin.getRoles());
+		return sqlSession.insert(NAME_SPACE + "saveRole", map) == admin.getRoles().size();
+	}
+
+	public boolean updateAdmin(Admin admin) {
+		return (sqlSession.update(NAME_SPACE + "updateAdmin", admin) == 1);
 	}
 
 }

@@ -80,6 +80,13 @@ body.signin {
         display: none;
     }
 }
+@media screen and (max-width: 440px){
+	.signinpanel,
+	.signuppanel{
+		width: 100%!important;
+    	padding: 20px;
+	}
+}
 @media screen and (max-width: 320px) {
     .signinpanel,
     .signuppanel {

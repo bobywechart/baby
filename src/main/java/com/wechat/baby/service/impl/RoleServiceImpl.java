@@ -56,4 +56,8 @@ public class RoleServiceImpl implements RoleService {
 		return true;
 	}
 
+	public List<Role> getRoleList(Long... roleIds) {
+		return roleDao.getRoleList(roleIds);
+	}
+
 }

@@ -21,4 +21,8 @@ public interface AdminService {
 	boolean isAuthenticated() ;
 
 	boolean updateAdminLocked(Admin admin);
+
+	boolean save(Admin admin);
+
+	boolean updateAdmin(Admin admin);
 }

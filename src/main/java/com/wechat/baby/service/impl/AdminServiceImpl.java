@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import com.wechat.baby.dao.AdminDao;
@@ -53,5 +54,18 @@ public class AdminServiceImpl implements AdminService{
 
 	public List<Admin> getAdmin() {
 		return adminDao.getAdmin();
+	}
+
+	@Transactional
+	public boolean save(Admin admin) {
+		if(!adminDao.save(admin)){return false;}
+		if(admin.getRoles() != null && !admin.getRoles().isEmpty()){
+			return adminDao.saveRole(admin);
+		}
+		return true;
+	}
+
+	public boolean updateAdmin(Admin admin) {
+		return adminDao.updateAdmin(admin);
 	}
 }

@@ -65,5 +65,35 @@ public interface AdminDao {
 	 * @return List<Admin>
 	 */
 	List<Admin> getAdmin();
+
+	/**
+	 * 保存管理员信息
+	 * @author lianghao
+	 * @date 2017年6月15日
+	 * @param admin
+	 *           管理员信息
+	 * @return boolean
+	 */
+	boolean save(Admin admin);
+
+	/**
+	 * 保存管理员角色信息
+	 * @author lianghao
+	 * @date 2017年6月15日
+	 * @param admin
+	 *           管理员信息
+	 * @return boolean
+	 */
+	boolean saveRole(Admin admin);
+
+	/**
+	 * 更新管理员信息
+	 * @author lianghao
+	 * @date 2017年6月16日
+	 * @param admin
+	 *          管理员信息
+	 * @return boolean
+	 */
+	boolean updateAdmin(Admin admin);
 	
 }

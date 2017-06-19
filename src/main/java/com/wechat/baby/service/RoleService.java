@@ -16,4 +16,6 @@ public interface RoleService {
 
 	boolean update(Role role);
 
+	List<Role> getRoleList(Long... roleIds);
+
 }

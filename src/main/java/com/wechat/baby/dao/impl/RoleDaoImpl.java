@@ -15,36 +15,42 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-
+	/** 对应Mapper命名空间*/
+    private static String NAME_SPACE = "com.wechat.baby.mapper.RoleMapper.";
+    
 	public List<Role> getRole() {
-		return sqlSession.selectList("getRole");
+		return sqlSession.selectList(NAME_SPACE + "getRole");
 	}
 
 	public Role getRoleById(Long id) {
-		return sqlSession.selectOne("getRoleById", id);
+		return sqlSession.selectOne(NAME_SPACE + "getRoleById", id);
 	}
 
 	public boolean save(Role role) {
-		return sqlSession.insert("save", role) == 1;
+		return sqlSession.insert(NAME_SPACE + "save", role) == 1;
 	}
 
 	public boolean saveRoleAuthority(Role role) {
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", role.getId());
 		map.put("authorities", role.getAuthorities());
-		return sqlSession.insert("saveRoleAuthority", map) == role.getAuthorities().size();
+		return sqlSession.insert(NAME_SPACE + "saveRoleAuthority", map) == role.getAuthorities().size();
 	}
 
 	public boolean update(Role role) {
-		return sqlSession.update("update", role) == 1;
+		return sqlSession.update(NAME_SPACE + "update", role) == 1;
 	}
 
 	public boolean deleteRoleAuthority(Long id) {
-		return sqlSession.delete("deleteRoleAuthority", id) > 0;
+		return sqlSession.delete(NAME_SPACE + "deleteRoleAuthority", id) > 0;
 	}
 
 	public boolean deleteById(Long id) {
-		return sqlSession.delete("deleteById", id) == 1;
+		return sqlSession.delete(NAME_SPACE + "deleteById", id) == 1;
+	}
+
+	public List<Role> getRoleList(Long... roleIds) {
+		return sqlSession.selectList(NAME_SPACE + "getRoleList", roleIds);
 	}
 	
 }

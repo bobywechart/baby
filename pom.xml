@@ -67,6 +67,12 @@
 			<artifactId>shiro-ehcache</artifactId>
 			<version>1.3.2</version>
 		</dependency>
+		<!-- FreeMarker使用shiro标签依赖包 -->
+		<dependency>
+		    <groupId>net.mingsoft</groupId>
+		    <artifactId>shiro-freemarker-tags</artifactId>
+		    <version>0.1</version>
+		</dependency>
     	<dependency>
     		<groupId>org.apache.commons</groupId>
     		<artifactId>commons-lang3</artifactId>

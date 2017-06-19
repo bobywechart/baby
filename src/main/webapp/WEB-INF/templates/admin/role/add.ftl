@@ -34,7 +34,6 @@
 								<input type="text" class="form-control" name="name" required />
 							</div>
 						</div>
-						
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
@@ -54,7 +53,6 @@
 								</div>
 							</div>
 						</div>
-						
 						<div class="hr-line-dashed"></div>
 						
 						<div class="form-group">
@@ -63,7 +61,6 @@
 								<input type="text" class="form-control" name="description" />
 							</div>
 						</div>
-
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
@@ -77,11 +74,12 @@
                                 </label>
 							</div>
 						</div>
-
+						<div class="hr-line-dashed"></div>
+						
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<button class="btn btn-primary" type="submit">保存</button>
-								<button class="btn btn-white" type="reset">取消</button>
+								<button class="btn btn-white" type="button" onclick="javascript:history.back(-1);">取消</button>
 							</div>
 						</div>
 					</form>
