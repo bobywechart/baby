@@ -28,6 +28,7 @@
 				</div>
 				<div class="ibox-content">
 					<form method="post" class="form-horizontal" id="signupForm" action="update.html">
+						<input type="hidden" name="id" value="${admin.id}" />
 						<div class="form-group">
 							<label class="col-sm-1 control-label">用户名：</label>
 							<div class="col-sm-6">
@@ -111,6 +112,25 @@
 						</div>
 						<div class="hr-line-dashed"></div>
 
+						<div class="form-group">
+							<label class="col-sm-1 control-label">是否锁定：</label>
+							<div class="col-sm-6">
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="true" name="isLocked" <#if admin.isLocked> checked="checked"</#if> />
+										<i class="fa fa-check text-navy"></i>
+									</label>
+								</div>
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="false" name="isLocked" <#if !admin.isLocked> checked="checked"</#if> />
+										<i class="fa fa-times text-warning"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+						
 						<div class="form-group">
 							<label class="col-sm-1 control-label">角色：</label>
 							<div class="col-sm-6">

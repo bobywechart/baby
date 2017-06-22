@@ -95,5 +95,35 @@ public interface AdminDao {
 	 * @return boolean
 	 */
 	boolean updateAdmin(Admin admin);
+
+	/**
+	 * 根据管理员ID查找角色信息
+	 * @author lianghao
+	 * @date 2017年6月22日
+	 * @param id
+	 *         管理员ID
+	 * @return List<Long>
+	 */
+	List<Long> getRoleId(Long id);
+
+	/**
+	 * 根据管理员ID删除权限信息
+	 * @author lianghao
+	 * @date 2017年6月22日
+	 * @param id
+	 *         管理员ID
+	 * @return boolean
+	 */
+	boolean deleteAdminRole(Long id);
+
+	/**
+	 * 根据管理员ID删除管理员信息
+	 * @author lianghao
+	 * @date 2017年6月22日
+	 * @param id
+	 *         管理员ID
+	 * @return boolean
+	 */
+	boolean deleteById(Long id);
 	
 }

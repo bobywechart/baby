@@ -90,4 +90,16 @@ public class AdminDaoImpl implements AdminDao {
 		return (sqlSession.update(NAME_SPACE + "updateAdmin", admin) == 1);
 	}
 
+	public List<Long> getRoleId(Long id) {
+		return sqlSession.selectList(NAME_SPACE + "getRoleId", id);
+	}
+
+	public boolean deleteAdminRole(Long id) {
+		return sqlSession.delete(NAME_SPACE + "deleteAdminRole", id) > 0;
+	}
+
+	public boolean deleteById(Long id) {
+		return sqlSession.delete(NAME_SPACE + "deleteById", id) == 1;
+	}
+
 }

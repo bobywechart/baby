@@ -25,4 +25,6 @@ public interface AdminService {
 	boolean save(Admin admin);
 
 	boolean updateAdmin(Admin admin);
+
+	boolean deleteById(Long[] ids);
 }

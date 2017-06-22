@@ -4,13 +4,7 @@
 <mapper namespace="com.wechat.baby.mapper.AdminMapper">
 	<resultMap id="Admin" type="admin">
 		<id property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="password" column="password" />
-		<result property="email" column="email" />
 		<result property="realName" column="real_name" />
-	    <result property="mobile" column="mobile" />
-		<result property="company" column="company" />
-		<result property="department" column="department" />
 		<result property="isEnabled" column="is_enabled" />
 		<result property="isLocked" column="is_locked" />
 		<result property="loginFailureCount" column="login_failure_count" />
@@ -18,12 +12,6 @@
 		<result property="lockedDate" column="locked_date" javaType="java.util.Date" />
 		<result property="createDate" column="create_date" javaType="java.util.Date" />
 		<result property="modifyDate" column="modify_date" javaType="java.util.Date" />
-		<collection property="roles" ofType="role">
-			<id property="id" column="role_id"/>
-			<result property="name" column="name" />
-			<result property="isSystem" column="is_system" />
-			<result property="description" column="description" />
-		</collection>
 	</resultMap>
 
 	<sql id="forUpdate">
@@ -31,18 +19,14 @@
 	</sql>
 	
 	<select id="getAdminByUsername" parameterType="hashmap" resultMap="Admin">
-	    select a.*,r.id as role_id,r.name,r.is_system,r.description  
-	      from baby_admin a,baby_role r,baby_admin_role ar 
-	     where a.id = ar.admins and ar.roles = r.id and a.username = #{username}
+	    select * from baby_admin where username = #{username}
 		<if test="isUpdate == true">
 			<include refid="forUpdate" />
 		</if>
 	</select>
 	
 	<select id="getAdminById" parameterType="hashmap" resultMap="Admin">
-	    select a.*,r.id as role_id,r.name,r.is_system,r.description
-	      from baby_admin a,baby_role r,baby_admin_role ar 
-	     where a.id = ar.admins and ar.roles = r.id and a.id = #{id}
+	    select * from baby_admin where id = #{id}
 		<if test="isUpdate == true">
 			<include refid="forUpdate" />
 		</if>
@@ -77,8 +61,7 @@
 	<update id="updateAdmin" parameterType="admin">
 	    update baby_admin set password=#{password,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR},mobile=#{mobile,jdbcType=VARCHAR},
 	           company=#{company,jdbcType=VARCHAR},department=#{department,jdbcType=VARCHAR},is_enabled=#{isEnabled,jdbcType=INTEGER},
-	           is_locked=#{isLocked,jdbcType=INTEGER},login_failure_count=#{loginFailureCount,jdbcType=INTEGER},
-	           login_ip=#{loginIp,jdbcType=VARCHAR}
+	           is_locked=#{isLocked,jdbcType=INTEGER},login_failure_count=#{loginFailureCount,jdbcType=INTEGER}
 	     where id = #{id}
 	</update>
 	
@@ -86,4 +69,16 @@
 	    select distinct a.authority from baby_role_authority a 
 	     where a.role_id in (select r.roles from baby_admin_role r where r.admins = #{id})
 	</select>
+	
+	<select id="getRoleId" parameterType="java.lang.Long" resultType="java.lang.Long">
+	    select distinct roles from baby_admin_role where admins = #{id}
+	</select>
+	
+	<delete id="deleteAdminRole" parameterType="java.lang.Long">
+		delete from baby_admin_role where admins = #{id} 
+	</delete>
+	
+	<delete id="deleteById" parameterType="java.lang.Long">
+		delete from baby_admin where id = #{id} 
+	</delete>
 </mapper>

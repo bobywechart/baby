@@ -1,5 +1,6 @@
 package com.wechat.baby.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import com.wechat.baby.dao.AdminDao;
+import com.wechat.baby.dao.RoleDao;
 import com.wechat.baby.entity.Admin;
+import com.wechat.baby.entity.Role;
 import com.wechat.baby.service.AdminService;
 
 @Service("adminServiceImpl")
@@ -19,13 +22,25 @@ public class AdminServiceImpl implements AdminService{
 
 	@Resource(name = "adminDaoImpl")
 	private AdminDao adminDao;
+	@Resource(name = "roleDaoImpl")
+	private RoleDao roleDao;
 	
 	public Admin getAdminByUsername(String username, boolean isUpdate) {
-		return adminDao.getAdminByUsername(username, isUpdate);
+		Admin admin = adminDao.getAdminByUsername(username, isUpdate);
+		if(admin != null){
+			List<Long> id = adminDao.getRoleId(admin.getId());
+			admin.setRoles(new HashSet<Role>(roleDao.getRoleList(id.toArray(new Long[0]))));
+		}
+		return admin;
 	}
 
 	public Admin getAdminById(Long id, boolean isUpdate) {
-		return adminDao.getAdminById(id, isUpdate);
+		Admin admin = adminDao.getAdminById(id, isUpdate);
+		if(admin != null){
+			List<Long> ids = adminDao.getRoleId(admin.getId());
+			admin.setRoles(new HashSet<Role>(roleDao.getRoleList(ids.toArray(new Long[0]))));
+		}
+		return admin;
 	}
 	
 	public List<String> listAuth(Long id) {
@@ -65,7 +80,24 @@ public class AdminServiceImpl implements AdminService{
 		return true;
 	}
 
+	@Transactional
 	public boolean updateAdmin(Admin admin) {
-		return adminDao.updateAdmin(admin);
+		if(!adminDao.updateAdmin(admin)){return false;}
+		if(admin.getRoles() != null && !admin.getRoles().isEmpty()){
+			if(!adminDao.deleteAdminRole(admin.getId()) || !adminDao.saveRole(admin)){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean deleteById(Long[] ids) {
+		int i = 0;
+		for(Long id : ids){
+			if(adminDao.deleteById(id) && adminDao.deleteAdminRole(id)){
+				i++;
+			}
+		}
+		return i == ids.length;
 	}
 }

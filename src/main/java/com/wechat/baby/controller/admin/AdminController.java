@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.DigestUtils;
@@ -82,7 +83,24 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Admin admin, Long[] roleIds, RedirectAttributes redirectAttributes) {
-		return "redirect:list.jhtml";
+		admin.setRoles(new HashSet<Role>(roleService.getRoleList(roleIds)));
+		Admin pAdmin = adminService.getAdminById(admin.getId(), false);
+		if (pAdmin == null) {
+			return "ERROR";
+		}
+		if (StringUtils.isNotEmpty(admin.getPassword())) {
+			admin.setPassword(DigestUtils.md5DigestAsHex(admin.getPassword().getBytes()));
+		} else {
+			admin.setPassword(pAdmin.getPassword());
+		}
+		if (pAdmin.getIsLocked() && !admin.getIsLocked()) {
+			admin.setLoginFailureCount(0);
+		} else {
+			admin.setIsLocked(pAdmin.getIsLocked());
+			admin.setLoginFailureCount(pAdmin.getLoginFailureCount());
+		}
+		adminService.updateAdmin(admin);
+		return "redirect:list.html";
 	}
 
 	/**
@@ -91,6 +109,15 @@ public class AdminController extends BaseController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody
 	String delete(Long[] ids) {
-		return "";
+		if (ids != null) {
+			for (Long id : ids) {
+				Admin admin = adminService.getAdminById(id, false);
+				if (admin != null) {
+					return "ERROR";
+				}
+			}
+			adminService.deleteById(ids);
+		}
+		return "SUCCESS";
 	}
 }
