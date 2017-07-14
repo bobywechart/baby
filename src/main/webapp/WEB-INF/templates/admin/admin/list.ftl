@@ -34,7 +34,7 @@
 	                            	<a class="btn btn-outline btn-primary" href="add.html">
 	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 	                                </a>
-	                                <a class="btn btn-outline btn-primary" href="add.html">
+	                                <a href="javascript:;" id="deleteButton" class="btn btn-outline btn-primary">
 	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 	                                </a>
 	                            </div>

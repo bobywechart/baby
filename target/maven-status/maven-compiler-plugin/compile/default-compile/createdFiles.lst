@@ -21,6 +21,7 @@ com\wechat\baby\config\ErrorConfiguration$1.class
 com\wechat\baby\config\ShiroAuthcToken.class
 com\wechat\baby\controller\admin\BaseController.class
 com\wechat\baby\util\WebUtils.class
+com\wechat\baby\config\FreeMarkerTags.class
 com\wechat\baby\config\ShiroAuthenticationFilter.class
 com\wechat\baby\dao\AdminDao.class
 com\wechat\baby\entity\Principal.class

@@ -17,6 +17,7 @@
     <link href="${base}/css/animate.css" rel="stylesheet">
     <link href="${base}/css/style.css" rel="stylesheet">
     <script type="text/javascript" src="${base}/js/jquery.js"></script>
+    <script type="text/javascript" src="${base}/js/common.js"></script>
 </head>
 
 <body class="gray-bg">
@@ -34,7 +35,7 @@
 	                            	<a class="btn btn-outline btn-primary" href="add.html">
 	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 	                                </a>
-	                                <a class="btn btn-outline btn-primary" href="add.html">
+	                                <a href="javascript:;" id="deleteButton" class="btn btn-outline btn-primary">
 	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 	                                </a>
 	                            </div>
@@ -59,7 +60,7 @@
 									      <td>${admin.username}</td>
 									      <td>${admin.email}</td>
 									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-									      <td><#if admin.loginIp??>${admin.loginIp}</#if></td>
+									      <td>${(admin.loginIp)!""}</td>
 									      <td>
 									      	<#if admin.isEnabled>
 									      		<i class="fa fa-check text-navy"></i>
@@ -95,6 +96,7 @@
     <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
+    <script type="text/javascript" src="${base}/js/list.js"></script>
 </body>
 
 </html>

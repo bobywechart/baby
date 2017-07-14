@@ -1,10 +1,10 @@
+D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\config\FreeMarkerTags.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\service\RoleService.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\dao\AdminDao.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\entity\Admin.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\controller\admin\BaseController.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\controller\admin\RoleController.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\dao\impl\AdminDaoImpl.java
-D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\config\FreeMarkerConfigurer.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\config\ShiroAuthcToken.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\service\RSAService.java
 D:\shopxx\nenoWorkspace\baby\src\main\java\com\wechat\baby\entity\Role.java

@@ -40,7 +40,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">密码：</label>
 							<div class="col-sm-6">
-								<input id="password" type="password" class="form-control" name="password" required />
+								<input id="password" type="password" class="form-control" name="password" />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -48,7 +48,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">确认密码：</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" name="rePassword" equalTo='#password' required />
+								<input type="password" class="form-control" name="rePassword" equalTo='#password' />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>

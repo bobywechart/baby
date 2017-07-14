@@ -10,6 +10,7 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
@@ -59,17 +60,22 @@ public class ShiroConfiguration {
 	@Bean(name = "shiroFilter")
 	public ShiroFilterFactoryBean shiroFilterFactoryBean() {
 		ShiroFilterFactoryBean shiroFilterbean = new ShiroFilterFactoryBean();
-		Map<String, Filter> map = shiroFilterbean.getFilters();
-		map.put("authc", getShiroAuthenticationFilter());
 		shiroFilterbean.setSecurityManager(securityManager());
 		shiroFilterbean.setLoginUrl("/admin/login/index.html");
 		shiroFilterbean.setSuccessUrl("/admin/login/main.html");
 		shiroFilterbean.setUnauthorizedUrl("/admin/login/unauthorized.html");
 		
+		Map<String, Filter> map = shiroFilterbean.getFilters();
+		map.put("authc", getShiroAuthenticationFilter());
+		LogoutFilter logoutFilter = new LogoutFilter();
+		logoutFilter.setRedirectUrl("/admin/login/index.html");
+		map.put("logout", logoutFilter);
+		
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 		filterChainDefinitionMap.put("/admin/", "anon");
 		filterChainDefinitionMap.put("/admin/login/main.html", "authc");
 		filterChainDefinitionMap.put("/admin/login/index.html", "authc");
+		filterChainDefinitionMap.put("/admin/login/logout.html", "logout");
 		filterChainDefinitionMap.put("/admin/**", "authc");
 		shiroFilterbean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 

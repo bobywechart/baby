@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wechat.baby.dao.RoleDao;
+import com.wechat.baby.entity.ResultEnum;
 import com.wechat.baby.entity.Role;
 import com.wechat.baby.service.RoleService;
 
@@ -27,9 +28,11 @@ public class RoleServiceImpl implements RoleService {
 	
 	@Transactional
 	public boolean save(Role role) {
-		if(!roleDao.save(role)){return false;}
+		if(!roleDao.save(role)){throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());}
 		if(role.getId() > 0 && role.getAuthorities() != null && !role.getAuthorities().isEmpty()){
-			return roleDao.saveRoleAuthority(role);
+			if(!roleDao.saveRoleAuthority(role)){
+				throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());
+			}
 		}
 		return true;
 	}
@@ -40,6 +43,8 @@ public class RoleServiceImpl implements RoleService {
 		for(Long id : ids){
 			if(roleDao.deleteById(id) && roleDao.deleteRoleAuthority(id)){
 				i++;
+			}else{
+				throw new RuntimeException(ResultEnum.DB_DELETE_ERROR.getMsg());
 			}
 		}
 		return i == ids.length;
@@ -47,10 +52,10 @@ public class RoleServiceImpl implements RoleService {
 
 	@Transactional
 	public boolean update(Role role) {
-		if(!roleDao.update(role)){return false;}
+		if(!roleDao.update(role)){throw new RuntimeException(ResultEnum.DB_UPDATE_ERROR.getMsg());}
 		if(role.getId() > 0 && role.getAuthorities() != null && !role.getAuthorities().isEmpty()){
 			if(!roleDao.deleteRoleAuthority(role.getId()) || !roleDao.saveRoleAuthority(role)){
-				return false;
+				throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());
 			}
 		}	
 		return true;

@@ -80,7 +80,7 @@
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<button class="btn btn-primary" type="submit">保存</button>
-								<button class="btn btn-white" type="reset">取消</button>
+								<button class="btn btn-white" type="button" onclick="javascript:history.back(-1);">取消</button>
 							</div>
 						</div>
 					</form>

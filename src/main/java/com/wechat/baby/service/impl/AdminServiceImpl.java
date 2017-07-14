@@ -14,6 +14,7 @@ import org.springframework.util.DigestUtils;
 import com.wechat.baby.dao.AdminDao;
 import com.wechat.baby.dao.RoleDao;
 import com.wechat.baby.entity.Admin;
+import com.wechat.baby.entity.ResultEnum;
 import com.wechat.baby.entity.Role;
 import com.wechat.baby.service.AdminService;
 
@@ -73,29 +74,34 @@ public class AdminServiceImpl implements AdminService{
 
 	@Transactional
 	public boolean save(Admin admin) {
-		if(!adminDao.save(admin)){return false;}
+		if(!adminDao.save(admin)){throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());}
 		if(admin.getRoles() != null && !admin.getRoles().isEmpty()){
-			return adminDao.saveRole(admin);
+			if(!adminDao.saveRole(admin)){
+				throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());
+			}
 		}
 		return true;
 	}
 
 	@Transactional
 	public boolean updateAdmin(Admin admin) {
-		if(!adminDao.updateAdmin(admin)){return false;}
+		if(!adminDao.updateAdmin(admin)){throw new RuntimeException(ResultEnum.DB_UPDATE_ERROR.getMsg());}
 		if(admin.getRoles() != null && !admin.getRoles().isEmpty()){
 			if(!adminDao.deleteAdminRole(admin.getId()) || !adminDao.saveRole(admin)){
-				return false;
+				throw new RuntimeException(ResultEnum.DB_INSERT_ERROR.getMsg());
 			}
 		}
 		return true;
 	}
 
+	@Transactional
 	public boolean deleteById(Long[] ids) {
 		int i = 0;
 		for(Long id : ids){
 			if(adminDao.deleteById(id) && adminDao.deleteAdminRole(id)){
 				i++;
+			}else{
+				throw new RuntimeException(ResultEnum.DB_DELETE_ERROR.getMsg());
 			}
 		}
 		return i == ids.length;

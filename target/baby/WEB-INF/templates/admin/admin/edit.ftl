@@ -28,10 +28,11 @@
 				</div>
 				<div class="ibox-content">
 					<form method="post" class="form-horizontal" id="signupForm" action="update.html">
+						<input type="hidden" name="id" value="${admin.id}" />
 						<div class="form-group">
 							<label class="col-sm-1 control-label">用户名：</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="username"  value="${admin.username}" required />
+								<input type="text" class="form-control" name="username"  value="${admin.username}" disabled />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -39,7 +40,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">密码：</label>
 							<div class="col-sm-6">
-								<input id="password" type="password" class="form-control" name="password" required />
+								<input id="password" type="password" class="form-control" name="password" />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -47,7 +48,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">确认密码：</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" name="rePassword" equalTo='#password' required />
+								<input type="password" class="form-control" name="rePassword" equalTo='#password' />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -63,7 +64,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">姓名：</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="realName" required />
+								<input type="text" class="form-control" name="realName" value="${admin.realName}" disabled />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -71,7 +72,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">联系方式：</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="mobile" required />
+								<input type="text" class="form-control" name="mobile" value="${admin.mobile}" required />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -79,7 +80,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">公司：</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="company" required />
+								<input type="text" class="form-control" name="company" value="${admin.company}" required />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -87,7 +88,7 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">部门：</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="department" required />
+								<input type="text" class="form-control" name="department" value="${admin.department}" required />
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -97,13 +98,13 @@
 							<div class="col-sm-6">
 								<div class="radio-inline i-checks">
 									<label>
-										<input type="radio" value="true" name="isEnabled" checked="checked" />
+										<input type="radio" value="true" name="isEnabled" <#if admin.isEnabled> checked="checked"</#if> />
 										<i class="fa fa-check text-navy"></i>
 									</label>
 								</div>
 								<div class="radio-inline i-checks">
 									<label>
-										<input type="radio" value="false" name="isEnabled">
+										<input type="radio" value="false" name="isEnabled" <#if !admin.isEnabled> checked="checked"</#if> />
 										<i class="fa fa-times text-warning"></i>
 									</label>
 								</div>
@@ -112,11 +113,30 @@
 						<div class="hr-line-dashed"></div>
 
 						<div class="form-group">
+							<label class="col-sm-1 control-label">是否锁定：</label>
+							<div class="col-sm-6">
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="true" name="isLocked" <#if admin.isLocked> checked="checked"</#if> />
+										<i class="fa fa-check text-navy"></i>
+									</label>
+								</div>
+								<div class="radio-inline i-checks">
+									<label>
+										<input type="radio" value="false" name="isLocked" <#if !admin.isLocked> checked="checked"</#if> />
+										<i class="fa fa-times text-warning"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+						
+						<div class="form-group">
 							<label class="col-sm-1 control-label">角色：</label>
 							<div class="col-sm-6">
 								<#list roles as role>
 									<label class="checkbox-inline i-checks">
-                            			<input type="checkbox" value="${role.id}" name="roleIds" required />${role.name}
+                            			<input type="checkbox" <#if admin.roles?seq_contains(role)> checked="checked"</#if> value="${role.id}" name="roleIds" required />${role.name}
                         			</label>
 								</#list>
 							</div>
@@ -126,7 +146,7 @@
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<button class="btn btn-primary" type="submit">保存</button>
-								<button class="btn btn-white" type="reset">取消</button>
+								<button class="btn btn-white" type="button" onclick="javascript:history.back(-1);">取消</button>
 							</div>
 						</div>
 					</form>
