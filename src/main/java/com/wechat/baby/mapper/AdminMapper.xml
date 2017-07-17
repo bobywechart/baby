@@ -61,7 +61,8 @@
 	<update id="updateAdmin" parameterType="admin">
 	    update baby_admin set password=#{password,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR},mobile=#{mobile,jdbcType=VARCHAR},
 	           company=#{company,jdbcType=VARCHAR},department=#{department,jdbcType=VARCHAR},is_enabled=#{isEnabled,jdbcType=INTEGER},
-	           is_locked=#{isLocked,jdbcType=INTEGER},login_failure_count=#{loginFailureCount,jdbcType=INTEGER}
+	           is_locked=#{isLocked,jdbcType=INTEGER},login_failure_count=#{loginFailureCount,jdbcType=INTEGER},
+	           login_ip=#{loginIp,jdbcType=VARCHAR}
 	     where id = #{id}
 	</update>
 	
