@@ -10,23 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.wechat.baby.dao")
 public class Application {
 
-	/**
-	 * 查看当前事务管理器
-	 * HibernateTransactionManager
-	 * DataSourceTransactionManager
-	 * JtaTransactionManager
-	 * JpaTransactionManager
-	 * @author john
-	 * @date 2017年7月10日
-	 * @param platformTransactionManager
-	 * @return
-	 */
-	/*@Bean
-    public Object showTransactionManager(PlatformTransactionManager platformTransactionManager){
-        System.out.println(">>>>>>>>>>" + platformTransactionManager.getClass().getName() + "<<<<<<<<<<");
-        return new Object();
-    }*/
-	 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
 	}

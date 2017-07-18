@@ -41,7 +41,7 @@
 	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
 							    	<thead>
 									    <tr>
-									      <th data-field="state" data-checkbox="true"></th>
+									      <th data-field="id" data-checkbox="true"></th>
 									      <th>名称</th>
 									      <th>是否内置</th>
 									      <th>角色描述</th>
@@ -52,7 +52,7 @@
 								    <tbody>
 								    <#list page.getList() as role>
 									    <tr>
-									      <td data-field="state" data-checkbox="true"></td>
+									      <td data-field="id"></td>
 									      <td>${role.name}</td>
 									      <td>
 									      	<#if role.isSystem>
@@ -80,8 +80,8 @@
 	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
+    <#-- <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script> -->
+    <#--<script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script> -->
     <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
 </body>
 
