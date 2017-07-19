@@ -1646,6 +1646,9 @@ table.dataTable thead .sorting:after {
 }
 
 /* CIRCLE */
+.paret{
+	margin-left:53px;
+}
 .img-circle {
 	border-radius: 50%;
 }
@@ -3155,6 +3158,7 @@ body.boxed-layout #wrapper {
 .clear {
 	display: block;
 	overflow: hidden;
+	text-align:center;
 }
 
 a {

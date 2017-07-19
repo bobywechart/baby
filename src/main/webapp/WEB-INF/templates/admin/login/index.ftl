@@ -26,7 +26,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img class="img-circle" src="${base}/img/profile_small.jpg" /></span>
+                            <span class="paret"><img class="img-circle" src="${base}/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
                                 <span class="clear">
 	                                <span class="m-t-xs block "><strong class="font-bold">${admin.username}</strong></span>
