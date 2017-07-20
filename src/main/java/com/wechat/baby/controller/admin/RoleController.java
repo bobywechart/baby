@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wechat.baby.entity.Pageable;
+import com.wechat.baby.entity.ResultEnum;
 import com.wechat.baby.entity.Role;
 import com.wechat.baby.service.RoleService;
 
@@ -79,7 +81,7 @@ public class RoleController extends BaseController {
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody
-	String delete(Long[] ids) {
+	String delete(@RequestParam("id") Long[] ids) {
 		if (ids != null) {
 			for (Long id : ids) {
 				Role role = roleService.getRoleById(id);
@@ -89,6 +91,6 @@ public class RoleController extends BaseController {
 			}
 			roleService.deleteById(ids);
 		}
-		return "SUCCESS";
+		return ResultEnum.SUCCESS.getMsg();
 	}
 }

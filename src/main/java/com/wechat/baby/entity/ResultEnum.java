@@ -6,7 +6,7 @@ package com.wechat.baby.entity;
  * 2017年3月2日
  */
 public enum ResultEnum {
-
+    SUCCESS(0000000, "操作成功"),
 	// 数据库操作异常
 	DB_INSERT_ERROR(1000001, "db insert error"), 
 	DB_UPDATE_ERROR(1000002, "db update error"), 

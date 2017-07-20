@@ -16,6 +16,7 @@
     <link href="${base}/css/font-awesome.min.css" rel="stylesheet">
     <link href="${base}/css/animate.css" rel="stylesheet">
     <link href="${base}/css/style.css" rel="stylesheet">
+    <link href="${base}/css/sweetAlert/sweetalert.css" rel="stylesheet">
     <script type="text/javascript" src="${base}/js/jquery.js"></script>
 </head>
 
@@ -34,25 +35,27 @@
 	                            	<a class="btn btn-outline btn-primary" href="add.html">
 	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 	                                </a>
-	                                <a class="btn btn-outline btn-primary" href="delete.html">
+	                                <a id="deleteButton" class="btn btn-outline btn-primary" href="javascript:;">
 	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 	                                </a>
 	                            </div>
-	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
+	                            <table id="listTable" data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
 							    	<thead>
 									    <tr>
-									      <th data-field="id" data-checkbox="true"></th>
-									      <th>名称</th>
-									      <th>是否内置</th>
-									      <th>角色描述</th>
-									      <th>创建时间</th>
+									      <th data-field="state" data-checkbox="true"></th>
+									      <th data-field="id">编号</th>
+									      <th data-field="name">名称</th>
+									      <th data-field="isSystem">是否内置</th>
+									      <th data-field="description">角色描述</th>
+									      <th data-field="createDate">创建时间</th>
 									      <th>操作</th>
 									    </tr>
 								    </thead>
 								    <tbody>
 								    <#list page.getList() as role>
 									    <tr>
-									      <td data-field="id"></td>
+									      <td data-field="state" data-checkbox="true"></td>
+									      <td data-field="id">${role.id}</td>
 									      <td>${role.name}</td>
 									      <td>
 									      	<#if role.isSystem>
@@ -80,9 +83,58 @@
 	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/sweetAlert/sweetalert.min.js"></script>
     <#-- <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script> -->
-    <#--<script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script> -->
+    <#-- <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script> -->
     <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
+    <script type="text/javascript">
+     $(function () {
+    	$('#listTable').bootstrapTable('hideColumn', 'id');
+    	$('#deleteButton').click(function () {
+    		var $checkedIds = $.map($('#listTable').bootstrapTable('getSelections'), function (row) {
+            	return row.id;
+        	});
+        	if($checkedIds.length == 0){
+        		swal("请选择要删除的数据", "", "warning");
+        		return false;
+        	}
+        	swal({
+        		title: "确定删除吗？", 
+        		type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "取消", 
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "确定",
+				showLoaderOnConfirm: true,
+        	},function(){
+        		$.ajax({
+        			url: "delete.html",
+					type: "POST",
+					dataType: "text",
+					data: "id="+$checkedIds,
+					cache: false,
+					success: function(data) {
+						$('#listTable').bootstrapTable('remove', {
+							field: 'id',
+							values: $checkedIds
+						});
+						setTimeout(function(){ 
+							swal(data, "", "success"); 
+  						}, 1000);
+					},
+					error: function(xhr) {
+						setTimeout(function(){ 
+							swal(xhr.statusText, "", "error"); 
+						}, 1000);
+						setTimeout(function(){ 
+							location.reload(true);
+  						}, 3000);
+					}
+        		});
+        	});
+    	});
+     }); 
+    </script>
 </body>
 
 </html>
