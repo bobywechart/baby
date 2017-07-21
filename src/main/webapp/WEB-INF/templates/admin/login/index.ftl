@@ -243,7 +243,7 @@
     <script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
     <!-- 自定义js -->
     <script type="text/javascript" src="${base}/js/hplus.js"></script>
     <script type="text/javascript" src="${base}/js/contabs.js"></script>

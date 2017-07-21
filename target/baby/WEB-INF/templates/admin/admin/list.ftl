@@ -95,7 +95,7 @@
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/layer.js"></script>
+    <script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
     <script type="text/javascript" src="${base}/js/list.js"></script>
 </body>
 
