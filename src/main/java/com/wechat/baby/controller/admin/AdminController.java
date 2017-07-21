@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -108,11 +109,11 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody
-	String delete(Long[] ids) {
+	String delete(@RequestParam("id") Long[] ids) {
 		if (ids != null) {
 			for (Long id : ids) {
 				Admin admin = adminService.getAdminById(id, false);
-				if (admin != null) {
+				if (admin == null) {
 					return "ERROR";
 				}
 			}

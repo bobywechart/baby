@@ -82,50 +82,9 @@
 	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
 	<script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
+	<script type="text/javascript" src="${base}/js/list.js"></script>
 	<#-- <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script> -->
 	<#-- <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script> -->
-	<script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
-	<script type="text/javascript">
-		$(function () {
-			$('#listTable').bootstrapTable('hideColumn', 'id');
-			$('#deleteButton').click(function () {
-				var $checkedIds = $.map($('#listTable').bootstrapTable('getSelections'), function (row) {
-					return row.id;
-				});
-				if($checkedIds.length == 0){
-					layer.msg('请选择要删除的数据', {icon: 7, time: 2000, offset: 't', shade: 0.5, anim: 4});
-					return false;
-				}
-				layer.confirm('你确定删除么？', {
-					skin: 'layui-layer-molv', //样式类名
-					btn: ['确定', '取消'], //按钮
-				}, function(){
-					$.ajax({
-						url: "delete.html",
-						type: "POST",
-						dataType: "text",
-						data: "id="+$checkedIds,
-						cache: false,
-						success: function(data) {
-							$('#listTable').bootstrapTable('remove', {
-								field: 'id',
-								values: $checkedIds
-							});
-							layer.msg('删除成功！', {icon: 6, time: 2000, offset: 't', shade: 0.5, anim: 4});
-						},
-						error: function(xhr) {
-							layer.msg(xhr.statusText, {icon: 5, time: 2000, offset: 't', shade: 0.5, anim: 4});
-
-							setTimeout(function(){ 
-								location.reload(true);
-							}, 3000);
-						}
-					});
-				}, function(){
-					location.reload();
-				});
-			});
-		}); 
-	</script>
 </body>
 </html>

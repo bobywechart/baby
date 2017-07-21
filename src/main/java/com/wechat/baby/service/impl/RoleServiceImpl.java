@@ -41,7 +41,7 @@ public class RoleServiceImpl implements RoleService {
 	public boolean deleteById(Long[] ids) {
 		int i = 0;
 		for(Long id : ids){
-			if(roleDao.deleteById(id) && roleDao.deleteRoleAuthority(id)){
+			if(roleDao.deleteRoleAuthority(id) && roleDao.deleteById(id)){
 				i++;
 			}else{
 				throw new RuntimeException(ResultEnum.DB_DELETE_ERROR.getMsg());

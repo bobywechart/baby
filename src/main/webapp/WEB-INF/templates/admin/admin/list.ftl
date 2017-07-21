@@ -34,14 +34,15 @@
 	                            	<a class="btn btn-outline btn-primary" href="add.html">
 	                                	<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 	                                </a>
-	                                <a href="javascript:;" id="deleteButton" class="btn btn-outline btn-primary">
+	                                <a id="deleteButton" class="btn btn-outline btn-primary" href="javascript:;" >
 	                                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 	                                </a>
 	                            </div>
-	                            <table data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
+	                            <table id="listTable" data-toggle="table" data-toolbar="#toolbar" data-page-number="1" data-page-size="20" data-pagination="true" data-search="true" >
 							    	<thead>
 									    <tr>
 									      <th data-field="state" data-checkbox="true"></th>
+									      <th data-field="id">编号</th>
 									      <th>用户名</th>
 									      <th>邮箱</th>
 									      <th>最后登录时间</th>
@@ -56,6 +57,7 @@
 								    <#list page.getList() as admin>
 									    <tr>
 									      <td data-field="state" data-checkbox="true"></td>
+									      <td data-field="id">${admin.id}</td>
 									      <td>${admin.username}</td>
 									      <td>${admin.email}</td>
 									      <td>${admin.modifyDate?string("yyyy-MM-dd HH:mm:ss")}</td>
@@ -92,9 +94,10 @@
 	<script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table.js"></script>
     <script type="text/javascript" src="${base}/js/plugins/bootstrap-table-zh-CN.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
+	<script type="text/javascript" src="${base}/js/plugins/layer/layer.js"></script>
+	<script type="text/javascript" src="${base}/js/list.js"></script>
+	<#-- <script type="text/javascript" src="${base}/js/plugins/jquery.metisMenu.js"></script> -->
+	<#-- <script type="text/javascript" src="${base}/js/plugins/jquery.slimscroll.min.js"></script> -->
 </body>
 
 </html>

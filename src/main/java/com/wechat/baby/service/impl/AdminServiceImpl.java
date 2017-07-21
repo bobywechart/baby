@@ -98,7 +98,7 @@ public class AdminServiceImpl implements AdminService{
 	public boolean deleteById(Long[] ids) {
 		int i = 0;
 		for(Long id : ids){
-			if(adminDao.deleteById(id) && adminDao.deleteAdminRole(id)){
+			if(adminDao.deleteAdminRole(id) && adminDao.deleteById(id) ){
 				i++;
 			}else{
 				throw new RuntimeException(ResultEnum.DB_DELETE_ERROR.getMsg());
